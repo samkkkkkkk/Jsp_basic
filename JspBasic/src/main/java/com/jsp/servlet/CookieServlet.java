@@ -46,7 +46,7 @@ public class CookieServlet extends HttpServlet {
 			response.sendRedirect("/JspBasic/cookie/cookie_welcome.jsp");
 		
 		}else {
-			response.sendRedirect("/JspBasic/cookie_login.jsp");
+			response.sendRedirect("/JspBasic/cookie/cookie_login.jsp");
 		}
 
 	}

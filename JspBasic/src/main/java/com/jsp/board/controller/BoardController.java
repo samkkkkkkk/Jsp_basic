@@ -34,8 +34,10 @@ public class BoardController extends HttpServlet {
 		}
 		
 		String uri = request.getRequestURI();
+		System.out.println(uri);
 		uri = uri.substring(request.getContextPath().length() + 1, uri.lastIndexOf("."));
 		
+		System.out.println(request.getContextPath());
 		System.out.println("정제된 uri: " + uri);
 		
 		switch (uri) {
@@ -92,8 +94,7 @@ public class BoardController extends HttpServlet {
 			//-> RequestDispatcher
 			RequestDispatcher dp 
 					= request.getRequestDispatcher("board/board_list.jsp");
-			dp.forward(request, response);
-			
+			dp.forward(request, response); // request와 response가 의미하는 것은??
 			
 			
 			break;

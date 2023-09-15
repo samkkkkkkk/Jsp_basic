@@ -17,7 +17,6 @@ public class Modifyservice implements IBoardService {
 		request.setAttribute("article", vo);
 		request.setAttribute("boardNo", bId);
 		
-
 	}
 
 }

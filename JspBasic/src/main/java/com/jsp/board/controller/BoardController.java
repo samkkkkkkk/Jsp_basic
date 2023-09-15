@@ -45,7 +45,7 @@ public class BoardController extends HttpServlet {
 		if(request.getMethod().equals("POST")) {
 			request.setCharacterEncoding("UTF-8");
 		}
-
+		
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		uri = uri.substring(request.getContextPath().length() + 1, uri.lastIndexOf("."));
@@ -92,19 +92,20 @@ public class BoardController extends HttpServlet {
 
 			//request 객체를 다음 화면까지 운반하기 위한 forward 기능을 제공하는 객체
 			//-> RequestDispatcher
+			
 			dp = request.getRequestDispatcher("board/board_list.jsp"); //Dispatcher에는 절대경로 사용x
 			dp.forward(request, response);
 			break;
-			
+
 		case "content":
 			System.out.println("글 상세보기 요청이 들어옴!");
 			sv = new ContentService();
 			sv.execute(request, response);
-
+			
 			dp = request.getRequestDispatcher("board/board_content.jsp");
 			dp.forward(request, response);
 			break;
-			
+
 		case "modify":
 			System.out.println("글 수정 페이지로 이동 요청!");
 			sv = new Modifyservice();
@@ -118,35 +119,32 @@ public class BoardController extends HttpServlet {
 			System.out.println("글 수정 요청이 들어옴!");
 			sv = new UpdateService();			
 			//새롭게 입력받은 수정값으로 BoardVo 객체를 생성해서 수정을 진행하세요
-			//(기존 리스트에 존재한느 객체르 새로운 객체로 교체)
-			//수정이 완료되면 수정된 글의 상세보기 페이지로 응답이 나가야 합ㄴ디ㅏ
+			//(기존 리스트에 존재하는 객체를 새로운 객체로 교체)
+			//수정이 완료되면 수정된 글의 상세보기 페이지로 응답이 나가야 합니다.
 			sv.execute(request, response);
 
 			response.sendRedirect("/JspBasic/content.board?bId=" + request.getParameter("boardNo"));
 			break;
-			
+
 		case "delete":
 			System.out.println("삭제 요청이 들어옴!");
 			sv = new DeleteService();
-			
+
 			sv.execute(request, response);
-			
+
 			response.sendRedirect("/JspBasic/list.board");
 			break;
-			
+
 		case "search":
 			System.out.println("검색 요청이 들어옴!");
 			sv = new SearchService();
 			sv.execute(request, response);
-			
+
 			dp = request.getRequestDispatcher("board/board_list.jsp");
 			dp.forward(request, response);
 			break;
-	
-		}
-		
-	
 			
+		}
 
 
 	}
